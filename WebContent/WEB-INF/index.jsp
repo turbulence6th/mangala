@@ -24,7 +24,6 @@
 		</style>
 	</head>
 	<body>
-		<h1>asd</h1>
 		<div class="image-detail">
 			<canvas id="mangala"></canvas>
 		</div>
