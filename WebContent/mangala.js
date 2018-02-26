@@ -200,7 +200,7 @@ class MangalaGame {
 		this.chestHeight = this.chestWidth * 2;
 		this.centerWidth = this.wellWidth * 4 + 14;
 		this.centerHeight = this.chestHeight;
-		this.width = (this.wellWidth * 6 + 31) * 8;
+		this.width = (this.wellWidth * 6 + 49) * 7;
 		this.height = (this.wellHeight + this.chestHeight + 35) * 7;
 		this.normalColor = 'yellow';
 		this.actionColor = '#2ECCFA';
