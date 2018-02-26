@@ -28,6 +28,7 @@ websocket.addEventListener("message", message => {
 	
 	else if(data.action == 'leave') {
 		mangalaGame.center.draw('OPPONENT LEFT');
+		mangalaGame.lock = false;
 	}
 });
 
