@@ -68,6 +68,11 @@ class IntroGame {
 			if(x >= this.back.width && x <= this.back.width + this.back.widthOffset && y >= this.back.height && y <= this.back.height + this.back.heightOffset) {
 				this.lock = false;
 				this.back.updateColor(this.actionColor);
+				var request = {
+					action: 'cancel'	
+				};
+				
+				websocket.send(JSON.stringify(request));
 				this.sleep(200).then(() => {
 					this.mainScreen();
 					this.lock = true;
@@ -134,8 +139,8 @@ class IntroGame {
 	}
 	
 	clear() {
-		for(var i = 0; i < this.width / 6; i++) {
-			for(var j = 0; j < this.height / 6; j++) {
+		for(var i = 0; i < this.width / 7; i++) {
+			for(var j = 0; j < this.height / 7; j++) {
 				new Point(this.context, i, j, 'black').draw();
 			}
 		}
@@ -145,10 +150,10 @@ class IntroGame {
 		this.screen = 'main';
 		this.clear();
 		
-		this.createGame = new Box(this.context, 20, 15, (this.width / 6) - 62, 20, 'CREATE GAME', this.normalColor);
+		this.createGame = new Box(this.context, 20, 15, Math.floor(this.width / 7) - 40, 20, 'CREATE GAME', this.normalColor);
 		this.createGame.draw();
 		
-		this.joinGame = new Box(this.context, 20, 47, (this.width / 6) - 62, 20, 'JOIN GAME', this.normalColor);
+		this.joinGame = new Box(this.context, 20, 47, Math.floor(this.width / 7) - 40, 20, 'JOIN GAME', this.normalColor);
 		this.joinGame.draw();
 	}
 	
@@ -156,10 +161,10 @@ class IntroGame {
 		this.screen = 'create';
 		this.clear();
 		
-		this.pinBox = new Box(this.context, 20, 15, (this.width / 6) - 62, 20, 'GETTING PIN', this.normalColor);
+		this.pinBox = new Box(this.context, 20, 15, Math.floor(this.width / 7) - 40, 20, 'GETTING PIN', this.normalColor);
 		this.pinBox.draw();
 		
-		this.back = new Box(this.context, 20, 47, (this.width / 6) - 62, 20, 'BACK', this.normalColor);
+		this.back = new Box(this.context, 20, 47, Math.floor(this.width / 7) - 40, 20, 'BACK', this.normalColor);
 		this.back.draw();
 		
 		var request = {
@@ -173,16 +178,16 @@ class IntroGame {
 		this.screen = 'join';
 		this.clear();
 		
-		this.pinTitle = new Digit(this.context, 20, 15, (this.width / 6) - 62, this.normalColor);
+		this.pinTitle = new Digit(this.context, 20, 15, Math.floor(this.width / 7) - 40, this.normalColor);
 		this.pinTitle.draw('ENTER PIN:');
 		
-		this.pin = new Digit(this.context, 20, 30, (this.width / 6) - 62, this.normalColor);
+		this.pin = new Digit(this.context, 20, 30, Math.floor(this.width / 7) - 40, this.normalColor);
 		this.pin.draw('');
 		
-		this.join = new Box(this.context, 20, 47, (this.width / 6) - 110, 20, 'JOIN', this.normalColor);
+		this.join = new Box(this.context, 20, 47, 47, 20, 'JOIN', this.normalColor);
 		this.join.draw();
 		
-		this.back = new Box(this.context, 70, 47, (this.width / 6) - 110, 20, 'BACK', this.normalColor);
+		this.back = new Box(this.context, 78, 47, 47, 20, 'BACK', this.normalColor);
 		this.back.draw();
 	}
 }
@@ -195,7 +200,7 @@ class MangalaGame {
 		this.chestHeight = this.chestWidth * 2;
 		this.centerWidth = this.wellWidth * 4 + 14;
 		this.centerHeight = this.chestHeight;
-		this.width = (this.wellWidth * 6 + 31) * 7;
+		this.width = (this.wellWidth * 6 + 31) * 8;
 		this.height = (this.wellHeight + this.chestHeight + 35) * 7;
 		this.normalColor = 'yellow';
 		this.actionColor = '#2ECCFA';
@@ -606,31 +611,31 @@ class MangalaGame {
 	}
 	
 	draw() {
-		for(var i = 0; i < this.width / 6; i++) {
-			for(var j = 0; j < this.height / 6; j++) {
+		for(var i = 0; i < this.width / 7; i++) {
+			for(var j = 0; j < this.height / 7; j++) {
 				new Point(this.context, i, j, 'black').draw();
 			}
 		}
 		
 		for(var i = 0; i < 6; i++) {
-			var well = new Box(this.context, 5 + (this.wellWidth + 4) * i, 5, this.wellWidth, this.wellHeight, 4, this.normalColor);
+			var well = new Box(this.context, 14 + (this.wellWidth + 4) * i, 5, this.wellWidth, this.wellHeight, 4, this.normalColor);
 			well.draw();
 			this.player2Wells.push(well);
 		}
 		
 		for(var i = 0; i < 6; i++) {
-			var well = new Box(this.context, 5 + (this.wellWidth + 4) * i, 5 +  (this.wellHeight + this.chestHeight + 8), this.wellWidth, this.wellHeight, 4, this.normalColor);
+			var well = new Box(this.context, 14 + (this.wellWidth + 4) * i, 5 +  (this.wellHeight + this.chestHeight + 8), this.wellWidth, this.wellHeight, 4, this.normalColor);
 			well.draw();
 			this.player1Wells.push(well);
 		}
 		
-		this.player2Chest = new Box(this.context, 5, 5 + (this.wellHeight + 4), this.chestWidth, this.chestHeight, 0, this.normalColor);
+		this.player2Chest = new Box(this.context, 14, 5 + (this.wellHeight + 4), this.chestWidth, this.chestHeight, 0, this.normalColor);
 		this.player2Chest.draw();
 		
-		this.player1Chest = new Box(this.context, 5 + (this.wellWidth + 4) * 5, 5 + (this.wellHeight + 4), this.chestWidth, this.chestHeight, 0, this.normalColor);
+		this.player1Chest = new Box(this.context, 14 + (this.wellWidth + 4) * 5, 5 + (this.wellHeight + 4), this.chestWidth, this.chestHeight, 0, this.normalColor);
 		this.player1Chest.draw();
 		
-		this.center = new Center(this.context, 5 + this.chestWidth + 4, this.wellWidth + 9, this.centerWidth, this.centerHeight, this.normalColor);
+		this.center = new Center(this.context, 14 + this.chestWidth + 4, this.wellWidth + 9, this.centerWidth, this.centerHeight, this.normalColor);
 		if(this.turn == 1) {
 			this.center.draw('YOUR TURN');
 		}

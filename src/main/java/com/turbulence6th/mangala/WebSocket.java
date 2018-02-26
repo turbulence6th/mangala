@@ -106,6 +106,10 @@ public class WebSocket {
 				e.printStackTrace();
 			}
 		}
+		
+		else if (action.equals("cancel")) {
+			rooms.remove(this.room);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -113,6 +117,17 @@ public class WebSocket {
 	public void handleClose(Session session) {
 		Map<String, WebSocket> rooms = (Map<String, WebSocket>) this.context.getAttribute("rooms");
 		rooms.remove(this.room);
+		
+		if(this.opponent != null && this.opponent.isOpen()) {
+			JsonObject response = new JsonObject();
+			response.addProperty("action", "leave");
+			
+			try {
+				this.opponent.getBasicRemote().sendText(response.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@OnError

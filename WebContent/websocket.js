@@ -25,5 +25,9 @@ websocket.addEventListener("message", message => {
 	else if(data.action == 'move') {
 		mangalaGame.initDistribute(2, data.beans, 5 - data.wellNumber);
 	}
+	
+	else if(data.action == 'leave') {
+		mangalaGame.center.draw('OPPONENT LEFT');
+	}
 });
 
