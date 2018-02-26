@@ -3,6 +3,19 @@ var websocket = new WebSocket(":protocol:/:ip::port/websocket"
 		.replace(":ip", window.location.hostname)
 		.replace(":port", window.location.port));
 
+function ping(time) {
+	new Promise((resolve) => setTimeout(resolve, time)).then(() => {
+		var request = {
+				action: 'ping'
+		};
+		
+		websocket.send(JSON.stringify(request));
+		ping(time);
+	});
+}
+
+ping(25 * 1000);
+
 websocket.addEventListener("message", message => {
 	var data = JSON.parse(message.data);
 	if(data.action == 'create' && data.status == true) {

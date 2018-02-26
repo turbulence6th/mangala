@@ -37,6 +37,9 @@ public class WebSocket {
 	public void handleMessage(Session session, String message) {
 		Map<String, WebSocket> rooms = (Map<String, WebSocket>) this.context.getAttribute("rooms");
 		JsonObject request = new JsonParser().parse(message).getAsJsonObject();
+		
+		System.out.println(request.toString());
+		
 		String action = request.get("action").getAsString();
 		if (action.equals("create")) {
 			Random random = new Random();
