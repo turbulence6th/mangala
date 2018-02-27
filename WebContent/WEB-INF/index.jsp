@@ -29,5 +29,16 @@
 		</div>
 		<script type="text/javascript" src="/websocket.js"></script>
 		<script type="text/javascript" src="/mangala.js"></script>
+		
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114862287-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'UA-114862287-1');
+		</script>
+		
 	</body>
 </html>
