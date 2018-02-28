@@ -1,2 +1,2 @@
 # Mangala
-<a href = "https://mangala-turbulence6th.herokuapp.com/">https://mangala-turbulence6th.herokuapp.com/</a>
+<a href = "mangala.turbulence6th.com/">https://mangala.turbulence6th.com/</a>
